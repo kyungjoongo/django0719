@@ -1,0 +1,68 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+
+    <script>
+        // A $( document ).ready() block.
+        $(document).ready(function () {
+
+            $("#goList").click(function () {
+                location.href = "/post_list";
+
+            });
+
+            $("#btnDelete").click(function () {
+                var idValue = $(this).attr("idValue");
+
+                if ( confirm("삭제하시겠습니까?")){
+                    location.href= "/delete_post/"+ idValue;
+                }
+
+
+            });
+
+            $("#btnModify").click(function () {
+                var idValue = $(this).attr("idValue");
+
+                location.href= "/post_edit_form/"+ idValue;
+
+            });
+
+
+        });
+    </script>
+
+<div id="container">
+
+    <table border="0"  style="width:800px; " class="table">
+        <tr>
+            <th width="150" style="background-color: #fffccf;text-align: center">author</th>
+            <td><input style="background-color: #edecd6" readonly type="text" name="author" value="{{ post.author }}"></td>
+        </tr>
+        <tr>
+            <th width="150" style="background-color: #fffccf;text-align: center">title</th>
+            <td><input style="background-color: #edecd6" readonly size="102" type="text" name="title" value="{{ post.title }}"></td>
+
+        </tr>
+        <tr>
+            <th width="150" style="background-color: #fffccf;text-align: center">text</th>
+            <td><textarea  style="background-color: #edecd6" readonly cols="100" rows="15" name="text">{{ post.text }}</textarea>
+        </tr>
+
+    </table>
+
+
+    </table>
+    <br/>
+    <table border="0" cellpadding="0" width="150px" class="table" style="width: 150px">
+        <tr>
+            <td><input id="goList" type="button" value="목록"></td>
+            <td><input id="btnDelete" type="button" value="삭제" idValue="{{ post.id }}"></td>
+            <td><input id="btnModify" type="button" value="수정" idValue="{{ post.id }}"></td>
+
+        </tr>
+
+
+    </table>
+</div>
+
+{% endblock %}
